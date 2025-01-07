@@ -24,7 +24,7 @@ const listings = require("./router/listing.js");
 const reviews = require("./router/review.js");
 const userRouter = require("./router/user.js");
 
-// const mongoUrl = 'mongodb://127.0.0.1:27017/wanderlust2';
+
 
 const dbUrl = process.env.ATLASDB_URL;
 
