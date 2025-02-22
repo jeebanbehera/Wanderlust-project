@@ -1,169 +1,50 @@
 <style>
-  .search {
-  display: flex;
-  justify-content: center;
-  width: 60%;
-}
-/* .d-flex {
-  width: 20rem;
-  justify-content: center;
-} */
-  .btn-search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .btn-search{
     background-color: #fe424d;
     color: #fff;
     border: none;
     border-radius: 20px;
   }
-
-
-  .btn-search:hover {
+  .btn-search:hover{
     background-color: #fe424d;
     color: #fff;
   }
-
-  .btn-search i {
+  .btn-search i{
     display: inline;
-    margin-right: 0.5rem;
-  }
-
-  .search-input {
-    width: 20rem;
-    border: 1px solid black;
+    margin-right :0.5rem; 
+   }
+   .search-input{
     border-radius: 20px;
-    padding: 0 1rem;
-  }
+    padding: 0 2.5rem;
+   }
 
-  .navbar {
-    display: block;
-  }
-  .navbar-brand{
-    margin-right: 0;
-  }
-  .navbar-nav a{
-    margin: auto;
-  }
 </style>
-<nav class="navbar navbar-expand-md bg-body-light  border-bottom sticky-top">
-  <div class="container-fluid " style="background-color: white;">
-    <div class="navbar-brand">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid " style="background-color: white;"  >
       <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
-    </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
+        </div>
 
-    <div class="search">
-      <form class="d-flex ms-auto" role="search" id="searchFrom" action="/listings/result" method="GET">
-        <input class="form-control me-2 search-input" id="input" name="input" type="search"
-          placeholder="Search destination" aria-label="Search">
-        <button class="btn btn-search" id="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-      </form>
-    </div>
+        <form class="d-flex ms-auto" role="search">
+          <input class="form-control me-2 search-input" type="search" placeholder="Search destination" aria-label="Search">
+          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-      <div class="navbar-nav ms-auto ">
-        <a class="nav-link" href="/listings/new" style="overflow: hidden; height: 30px; padding-top: 2px;">Add new listing</a>
-        <% if(!currUser ){ %>
-          <a class="nav-link active" href="/signup"><b>signUp</b></a>
-          <a class="nav-link" href="/login"><b>Login</b></a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new">Add new listing</a>
+          <% if(!currUser ){ %>
+              <a class="nav-link active" href="/signup"><b>signUp</b></a>
+              <a class="nav-link" href="/login"><b>Login</b></a>
           <% } %>
-            <% if(currUser){%>
-              <a class="nav-link" href="/logout"><b>LogOut</b></a>
-              <% } %>
-      </div>
-    </div>
-  </div>
-
-  <div class="checkbox">
-    <input type="checkbox" id="check">
-    <label for="check">
-      <i class="fa-solid fa-bars-staggered" id="btn_check"></i>
-      <!-- <i class="fa-solid fa-xmark" id="cancel_check"></i> -->
-    </label>
-    <div class="container-fluid category ">
-      <div id="filters">
-        <div class="side_scroll" id="filter_div">
-          <a href="/listings">
-            <div id="filter">
-              <div><i class="fa-solid fa-house"></i></div>
-              <p>All</p>
-            </div>
-          </a>
-          <a href="/Trending">
-            <div id="filter">
-              <div><i class="fa-solid fa-fire"></i></div>
-              <p>Trending</p>
-            </div>
-          </a>
-          <a href="/Bedroom">
-            <div id="filter">
-              <div><i class="fa-solid fa-bed"></i></div>
-              <p>Bedroom</p>
-            </div>
-          </a>
-          <a href="/Swimming">
-            <div id="filter">
-              <div><i class="fa-solid fa-person-swimming"></i></div>
-              <p>Swimming</p>
-            </div>
-          </a>
-          <a href="/City">
-            <div id="filter">
-              <div><i class="fa-solid fa-city"></i></div>
-              <p>City</p>
-            </div>
-          </a>
-          <a href="/Mountains">
-            <div id="filter">
-              <div><i class="fa-solid fa-mountain"></i></div>
-              <p>Mountains</p>
-            </div>
-          </a>
-          <a href="/Camping">
-            <div id="filter">
-              <div><i class="fa-solid fa-campground"></i></div>
-              <p>Camping</p>
-            </div>
-          </a>
-          <a href="/Farms">
-            <div id="filter">
-              <div><i class="fa-solid fa-tractor"></i></div>
-              <p>Farms</p>
-            </div>
-          </a>
-          <a href="/Arctic">
-            <div id="filter">
-              <div><i class="fa-solid fa-snowflake"></i></div>
-              <p>Arctic</p>
-            </div>
-          </a>
-          <a href="/Building">
-            <div id="filter">
-              <div><i class="fa-solid fa-building"></i></div>
-              <p>Building</p>
-            </div>
-          </a>
-          <a href="/Nearroad">
-            <div id="filter">
-              <div><i class="fa-solid fa-road"></i></div>
-              <p>Near road </p>
-            </div>
-          </a>
-        </div>
-
-
-        <div id="tax-toggle">
-          <div class="form-check-reverse form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after tax </label>
-          </div>
+          <% if(currUser){%>
+            <a class="nav-link" href="/logout"><b>LogOut</b></a>
+          <% } %>
         </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
