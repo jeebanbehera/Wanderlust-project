@@ -7,10 +7,19 @@ module.exports.index = async(req,res)=>{
     res.render("listing/index.ejs",{allListings})
 }
 
+// search from
+module.exports.renderSearchFrom = async(req,res)=>{
+    let searchVal = req.query.input;
+    let allListings = await Listing.find({});
+    res.render("listing/search.ejs",{allListings,searchVal})
+}
+
 // newForm
 module.exports.renderNewForm = (req,res)=>{
     res.render("listing/new.ejs")
 };
+
+
 
 
 // show listing
@@ -49,9 +58,7 @@ module.exports.renderEditForm = async(req,res)=>{
         res.redirect("/listings")
     }
     let originalImageUrl = listing.image.url;
-    console.log(originalImageUrl)
-    originalImageUrl = originalImageUrl.replace("/upload","/upload/w_250")
-    console.log(originalImageUrl)
+    originalImageUrl = originalImageUrl.replace("/upload","/upload/h_25,w_25")
     res.render("listing/edit.ejs",{listing,originalImageUrl})
 };
 

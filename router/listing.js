@@ -20,10 +20,14 @@ router.route("/")
     //     res.send(req.file)
     // )
 
-    
+
+
+
 //new route
 router.get("/new",isLoggedin,(listingController.renderNewForm))
 
+// search
+router.get("/result",(listingController.renderSearchFrom))
 
 //show route, //update, //delete route
 router.route("/:id")

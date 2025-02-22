@@ -18,13 +18,14 @@ const passport = require("passport");
 const User = require("./models/user.js");
 const LocalStrategy = require("passport-local");
 const {isLoggedin} = require("./middleware.js")
+const Listing = require("./models/listing.js")
 
 
 const listings = require("./router/listing.js");
 const reviews = require("./router/review.js");
 const userRouter = require("./router/user.js");
 
-// const mongoUrl = 'mongodb://127.0.0.1:27017/wanderlust2';
+// const  URL = 'mongodb://127.0.0.1:27017/wanderlust2'
 
 const dbUrl = process.env.ATLASDB_URL;
 
@@ -36,8 +37,6 @@ main().then(()=>{
 
 async function main() {
   await mongoose.connect(dbUrl);
-
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
 app.set("view engine", "ejs")
@@ -52,7 +51,7 @@ const store = MongoStore.create({
     crypto:{
         secret:process.env.SECRET,
     },
-    touchAfter:24*3600,
+    touchAfter:24 * 3600,
 })
 
 const sessionOptions = {
@@ -105,6 +104,16 @@ app.use("/", userRouter)
 
 
 
+app.get("/:category",async (req,res)=>{
+    let category = req.params.category
+    let allListings = await Listing.find({})
+    res.render("listing/category.ejs",{allListings,category})
+})
+
+
+// app.get("/listings/result",(req,res)=>{
+//     console.log("data submit")
+// })
 
 //index route
 
