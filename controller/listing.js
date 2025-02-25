@@ -12,6 +12,13 @@ module.exports.renderNewForm = (req,res)=>{
     res.render("listing/new.ejs")
 };
 
+// search listings
+module.exports.renderSearchListing = async(req,res)=>{
+    let searchVal = req.query.search_query;
+    let allListings = await Listing.find({})
+    res.render("listing/search.ejs",{searchVal,allListings})
+}
+
 
 // show listing
 module.exports.showListing = async(req,res)=>{

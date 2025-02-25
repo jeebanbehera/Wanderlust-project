@@ -17,16 +17,17 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user.js");
 const LocalStrategy = require("passport-local");
-const {isLoggedin} = require("./middleware.js")
+const {isLoggedin} = require("./middleware.js");
 
 
 const listings = require("./router/listing.js");
 const reviews = require("./router/review.js");
 const userRouter = require("./router/user.js");
+const Listing = require('./models/listing.js');
 
-// const mongoUrl = 'mongodb://127.0.0.1:27017/wanderlust2';
+const mongoUrl = 'mongodb://127.0.0.1:27017/wanderlust2';
 
-const dbUrl = process.env.ATLASDB_URL;
+// const dbUrl = process.env.ATLASDB_URL;
 
 main().then(()=>{
     console.log("connected to DB")
@@ -35,7 +36,7 @@ main().then(()=>{
 });
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(mongoUrl);
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
@@ -47,16 +48,16 @@ app.use(methodOverride('_method'));
 app.engine('ejs', engine);
 app.use(express.static(path.join(__dirname,"/public")))
 
-const store = MongoStore.create({
-    mongoUrl:dbUrl,
-    crypto:{
-        secret:process.env.SECRET,
-    },
-    touchAfter:24*3600,
-})
+// const store = MongoStore.create({
+//     mongoUrl:dbUrl,
+//     crypto:{
+//         secret:process.env.SECRET,
+//     },
+//     touchAfter:24*3600,
+// })
 
 const sessionOptions = {
-    store,
+    // store,
     secret: process.env.SECRET,
     resave:false,
     saveunintialized: true,
@@ -67,9 +68,9 @@ const sessionOptions = {
     }
 }
 
-store.on("error",()=>{
-    console.log("error in MONGO session store",error)
-})
+// store.on("error",()=>{
+//     console.log("error in MONGO session store",error)
+// })
 
 
 app.use(session(sessionOptions));
@@ -102,8 +103,12 @@ app.use("/Listings/:id/reviews", reviews);
 app.use("/", userRouter)
 
 
-
-
+// category route
+app.get("/:id",async(req,res)=>{
+    let {id} = req.params;
+    let allListings = await Listing.find({})
+    res.render("listing/category.ejs",{id,allListings})
+});
 
 
 //index route

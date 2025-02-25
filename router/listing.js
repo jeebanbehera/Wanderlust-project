@@ -25,6 +25,8 @@ router.route("/")
 router.get("/new",isLoggedin,(listingController.renderNewForm))
 
 
+router.get("/results",listingController.renderSearchListing);
+
 //show route, //update, //delete route
 router.route("/:id")
     .get(wrapAsync(listingController.showListing))

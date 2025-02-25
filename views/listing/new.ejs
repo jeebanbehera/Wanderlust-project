@@ -4,13 +4,35 @@
             <br><br>
             <h2>Create a new listing</h2>
             <form method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Enter title</label>
-                    <input type="text" placeholder="enter title" name="listing[title]" class="form-control" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
+                <div class="row">
+                    <div class="mb-3 col-8">
+                        <label for="title" class="form-label">Enter title</label>
+                        <input type="text" placeholder="enter title" name="listing[title]" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                          </div>
+                    </div>
+
+                    <div class="mb-3 mt-1 col-4">
+                        <h2 style="font-size: 16px;">Category</h2>
+                        <select class="form-select" name="listing[category]" aria-label="Default select example">
+                            <option selected>Select Your Category</option>
+                            <option value="trending">Trending</option>
+                            <option value="bedroom">Bedroom</option>
+                            <option value="swimming">Swimming</option>
+                            <option value="city">City</option>
+                            <option value="mountains">Mountains</option>
+                            <option value="camping">Camping</option>
+                            <option value="farms">Farms</option>
+                            <option value="arctic">Arctic</option>
+                            <option value="building">Building</option>
+                            <option value="near_road">Near Road</option>
+                          </select>
+                    </div>
                 </div>
+               
+
+               
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Enter descriptoion</label>
