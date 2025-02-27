@@ -1,21 +1,20 @@
 <% layout('layouts/boilerplate') -%>
 
-<style>
-    .nothing_found{
-        margin-left: 35%;
-        margin-top: 4%;
-    }
-</style>
+    <style>
+        .nothing_found {
+            margin-top: 4%;
+        }
+    </style>
 
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4">
         <% let foundData=false %>
 
             <% for(listing of allListings){ %>
                 <% if( listing.title.toLowerCase().includes(searchVal.toLowerCase()) ||
                     listing.category?.toLowerCase().includes(searchVal.toLowerCase()) ||
-                    listing.description.toLowerCase().includes(searchVal.toLowerCase()) ||
-                    (typeof searchVal === "number" && listing.price <= searchVal) ||
+                    listing.description.toLowerCase().includes(searchVal.toLowerCase()) || (!isNaN(searchVal) &&
+                    Number(listing.price) <=Number(searchVal)) ||
                     listing.location.toLowerCase().includes(searchVal.toLowerCase()) ||
                     listing.country.toLowerCase().includes(searchVal.toLowerCase()) ){%>
 
@@ -41,9 +40,26 @@
                         </a>
                         <% } %>
                             <% } %>
-                                <% if(!foundData){%>
+                                <% if(!foundData) {%>
                                     <div class="nothing_found">
-                                        <h2>Listing Not Found ...</h2>
+                                        <h2>Listing Not Found !</h2>
                                     </div>
                                     <% } %>
+
     </div>
+
+    <script>
+        let taxSwitch = document.getElementById("tax-toggle");
+        taxSwitch.addEventListener("click", () => {
+            let taxInfo = document.getElementsByClassName("tax-info");
+            for (info of taxInfo) {
+                if (info.style.display != "inline") {
+                    info.style.display = "inline"
+                }
+                else {
+                    info.style.display = "none"
+                }
+
+            }
+        })
+    </script>
