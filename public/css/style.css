@@ -223,11 +223,14 @@ body {
     display: inline;
   }
   #filters{
+    width: 60%;
+    background-color: white;
+    height: 100vh;
     display: block;
     position: fixed;
-    left: -300px;
-    width: 100%;
+    left: -500px;
     transition: .4s ;
+    overflow: auto;
 
   }
   #tag-toggle{
@@ -236,11 +239,13 @@ body {
   .side_scroll{
     flex-direction: column;
     min-height: 100vh;
-    max-width: 50%;
     background-color: white;
     scroll-behavior: smooth;
-
+    scrollbar-width: 2px solid black;
+    margin-right: 0;
   }
+
+  
   .checkbox-i{
     display: inline;
 
