@@ -1,10 +1,10 @@
 <% layout('layouts/boilerplate') -%>
     <div class="row mb-4">
-        <div class="col-8 offset-3 ">
+        <div class="col-lg-8 offset-lg-3 ">
             <h2><%= listing.title %></h2>
         </div>
     
-    <div class="card col-6 offset-3 listing-card" >
+    <div class="card col-lg-6 offset-lg-3 listing-card" >
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing image">
         <div class="card-body">
             <p class="card-text"><B>Owner By:</B><%= listing.owner.username %></p>
@@ -19,7 +19,7 @@
 
   <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
         <div class="btns">
-            <a href="/listings/<%=listing._id %>/edit" class="btn btn-dark edit-btn col-1 offset-3 ">edit</a>
+            <a href="/listings/<%=listing._id %>/edit" class="btn btn-dark edit-btn col-lg-1 offset-lg-3 ">edit</a>
             <form method="post" action="/listings/<%=listing._id %>?_method=DELETE">
                 <button class="btn btn-dark offset-4">Delete</button>
             </form>
@@ -28,7 +28,7 @@
     
 
         
-    <div class="col-6 offset-3 mb-3" >
+    <div class="col-lg-6 offset-lg-3 mb-lg-3" >
         <hr>
         <% if(currUser){ %>
             <h4>Leave a review</h4>
