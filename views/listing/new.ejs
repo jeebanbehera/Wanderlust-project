@@ -3,7 +3,7 @@
         <div class="col-lg-8 offset-lg-2">
             <br><br>
             <h2>Create a new listing</h2>
-            <form method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
+            <form id="listingForm" method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
                 <div class="row">
                     <div class="mb-3 col-8">
                         <label for="title" class="form-label">Enter title</label>
@@ -15,8 +15,8 @@
 
                     <div class="mb-3 mt-1 col-4">
                         <h2 style="font-size: 16px;">Category</h2>
-                        <select class="form-select" name="listing[category]" aria-label="Default select example">
-                            <option selected>Select Your Category</option>
+                        <select class="form-select" name="listing[category]" id="categorySelect" aria-label="Default select example">
+                            <option value="" selected>Select Your Category</option>
                             <option value="trending">Trending</option>
                             <option value="bedroom">Bedroom</option>
                             <option value="swimming">Swimming</option>
@@ -82,3 +82,13 @@
             </form>
         </div>
     </div>
+
+    <script>
+         document.getElementById("listingForm").addEventListener("submit", function (event) {
+            const category = document.getElementById("categorySelect").value;
+                if (!category) {
+                alert("Please select a valid category.");
+                event.preventDefault(); // Prevent form submission
+                }
+        });
+    </script>
